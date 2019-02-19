@@ -7,6 +7,7 @@ ENV KUBECTL_VERSION=v1.10.2
 ENV TERRAFORM_VERSION=0.11.10
 ENV TERRAGRUNT_VERSION=0.17.4
 ENV HELM_VERSION=v2.8.2
+ENV PACKER_VERSION=1.3.4
 RUN apk add --update \
     python \
     python-dev \
@@ -28,6 +29,9 @@ RUN apk --no-cache update \
 && mv terraform /usr/local/bin/terraform \
 && curl -L -o /usr/local/bin/terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 \
 && chmod +x /usr/local/bin/terragrunt \
+&& curl -LO https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
+&& unzip packer_${PACKER_VERSION}_linux_amd64.zip \
+&& mv packer /usr/local/bin/packer \
 && curl -LO https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
 && tar -zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
 && mv linux-amd64/helm /usr/local/bin/helm \
