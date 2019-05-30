@@ -1,20 +1,8 @@
 FROM odavid/jenkins-jnlp-slave:latest
 
-ENV KOPS_VERSION=1.9.0
 # https://kubernetes.io/docs/tasks/kubectl/install/
 # latest stable kubectl: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
 ENV KUBECTL_VERSION=v1.10.2
-ENV TERRAFORM_VERSION=0.11.10
-ENV TERRAGRUNT_VERSION=0.17.4
-ENV HELM_VERSION=v2.8.2
-ENV PACKER_VERSION=1.3.4
-RUN apk add --update \
-    python \
-    python-dev \
-    py-pip \
-    build-base \
-    ansible \
-  && pip install virtualenv docker-compose awscli
 
 RUN apk --no-cache update \
 && apk --no-cache add ca-certificates python py-pip py-setuptools groff less \
